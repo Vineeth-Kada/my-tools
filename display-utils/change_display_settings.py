@@ -15,16 +15,15 @@ Usage:
 
 import json
 import subprocess
-import sys
 from dataclasses import dataclass
-from typing import Optional, Tuple
+from typing import Optional
 
 import Quartz
-
 
 # =============================================================================
 # DISPLAY CONFIGURATION
 # =============================================================================
+
 
 @dataclass
 class Resolution:
@@ -37,7 +36,7 @@ class Resolution:
 @dataclass
 class DisplayConfig:
     resolution: Optional[Resolution] = None
-    position: Optional[Tuple[int, int]] = None
+    position: Optional[tuple[int, int]] = None
     main: bool = False
     mirror: Optional[str] = None
 
@@ -64,9 +63,9 @@ SETUP = Setup(
             position=(-1440, -384),
         ),
         "builtin": DisplayConfig(
-            mirror='main',
+            mirror="main",
         ),
-    }
+    },
 )
 
 # =============================================================================
@@ -163,7 +162,9 @@ def get_quartz_display_id(serial_number):
     return None
 
 
-def set_display_mode(display_id, target_width, target_height, target_refresh, use_hidpi=False):
+def set_display_mode(
+    display_id, target_width, target_height, target_refresh, use_hidpi=False
+):
     """Set display to specified resolution and refresh rate.
 
     Args:
@@ -191,11 +192,15 @@ def set_display_mode(display_id, target_width, target_height, target_refresh, us
         pixel_height = Quartz.CGDisplayModeGetPixelHeight(mode)
 
         # Check resolution and refresh rate
-        if width != target_width or height != target_height or refresh != target_refresh:
+        if (
+            width != target_width
+            or height != target_height
+            or refresh != target_refresh
+        ):
             continue
 
         # HiDPI mode has 2x pixel density
-        is_hidpi = (pixel_width == width * 2 and pixel_height == height * 2)
+        is_hidpi = pixel_width == width * 2 and pixel_height == height * 2
 
         if use_hidpi == is_hidpi:
             best_match = mode
@@ -203,7 +208,9 @@ def set_display_mode(display_id, target_width, target_height, target_refresh, us
 
     if not best_match:
         mode_type = "HiDPI" if use_hidpi else "native"
-        print(f"  ❌ No {mode_type} mode found for {target_width}x{target_height}@{target_refresh}Hz")
+        print(
+            f"  ❌ No {mode_type} mode found for {target_width}x{target_height}@{target_refresh}Hz"
+        )
         return False
 
     # Begin display configuration transaction
@@ -215,14 +222,18 @@ def set_display_mode(display_id, target_width, target_height, target_refresh, us
     config_ref = config[1]
 
     # Configure the display mode
-    result = Quartz.CGConfigureDisplayWithDisplayMode(config_ref, display_id, best_match, None)
+    result = Quartz.CGConfigureDisplayWithDisplayMode(
+        config_ref, display_id, best_match, None
+    )
     if result != 0:
         print(f"  ❌ Failed to configure display: error {result}")
         Quartz.CGCancelDisplayConfiguration(config_ref)
         return False
 
     # Apply configuration (kCGConfigureForSession = temporary, until reboot/re-login)
-    result = Quartz.CGCompleteDisplayConfiguration(config_ref, Quartz.kCGConfigureForSession)
+    result = Quartz.CGCompleteDisplayConfiguration(
+        config_ref, Quartz.kCGConfigureForSession
+    )
     if result != 0:
         print(f"  ❌ Failed to apply configuration: error {result}")
         return False
@@ -241,8 +252,10 @@ def get_display_id(serial_or_builtin):
     """Get Quartz display ID for serial number or 'builtin'."""
     if serial_or_builtin == "builtin":
         (err, displays, _) = Quartz.CGGetActiveDisplayList(5, None, None)
-        for display_id in list(displays) + [1]: # 1 is just a coincidence on my system?
-            if Quartz.CGDisplayIsBuiltin(display_id) > 0: # -1 is probably an error code
+        for display_id in list(displays) + [1]:  # 1 is just a coincidence on my system?
+            if (
+                Quartz.CGDisplayIsBuiltin(display_id) > 0
+            ):  # -1 is probably an error code
                 return display_id
         return None
     return get_quartz_display_id(serial_or_builtin)
@@ -258,9 +271,11 @@ def configure_display(quartz_id, config: DisplayConfig, name: str):
     mode = "HiDPI" if res.hidpi else "native"
     print(f"  Target: {res.width}x{res.height}@{res.refresh_rate}Hz ({mode})")
 
-    success = set_display_mode(quartz_id, res.width, res.height, res.refresh_rate, res.hidpi)
+    success = set_display_mode(
+        quartz_id, res.width, res.height, res.refresh_rate, res.hidpi
+    )
     if not success:
-        print(f"  ❌ Failed to set mode")
+        print("  ❌ Failed to set mode")
     return success
 
 
@@ -284,13 +299,15 @@ def apply_arrangement(display_map, displays, main_id):
         if quartz_id == main_id:
             continue
 
-        if config.mirror == 'main' and main_id:
+        if config.mirror == "main" and main_id:
             Quartz.CGConfigureDisplayMirrorOfDisplay(config_ref, quartz_id, main_id)
         elif config.position:
             x, y = config.position
             Quartz.CGConfigureDisplayOrigin(config_ref, quartz_id, x, y)
 
-    result = Quartz.CGCompleteDisplayConfiguration(config_ref, Quartz.kCGConfigureForSession)
+    result = Quartz.CGCompleteDisplayConfiguration(
+        config_ref, Quartz.kCGConfigureForSession
+    )
     return result == 0
 
 
@@ -314,7 +331,9 @@ def apply_setup(setup: Setup):
                 display_id = get_display_id(serial)
                 if display_id:
                     if quartz_id is not None:
-                        raise ValueError(f"\n❌ {logical_id}: Multiple displays connected. Only one permitted per logical ID.")
+                        raise ValueError(
+                            f"\n❌ {logical_id}: Multiple displays connected. Only one permitted per logical ID."
+                        )
                     quartz_id = display_id
         else:
             raise ValueError(f"\n❌ {logical_id}: No serial mapping found in config")

@@ -153,7 +153,7 @@ def move_app_windows(
     width = target_screen["width"]
     height = target_screen["height"]
 
-    # Get the menubar height from the primary screen's visible frame
+    # Get the menubar height and max NSScreen Y coordinate
     screens = get_screen_info()
     max_ns_y = max(s["y"] + s["height"] for s in screens)
 
@@ -181,11 +181,45 @@ def move_app_windows(
     effective_height = height - menubar_height
 
     # Transform NSScreen coordinates to AppleScript window coordinates
-    # NSScreen: bottom-left origin, Y increases upward
-    # AppleScript: top-left origin, Y increases downward
-    # AppleScript top = max_ns_y - (ns_y + ns_height) + menubar_height
+
+    # NSScreen Bounds (Bottom-left origin, Y increases upward)
+
+    # Screen 0 (Main - Horizontal):
+    # - Origin: (0, 0)
+    # - Size: 2560 x 1440
+
+    # Screen 1 (Vertical):
+    # - Origin: (-1440, -736)
+    # - Size: 1440 x 2560
+
+    # Main Screen Details:
+    # - Full frame: (0, 0) → 2560 x 1440
+    # - Visible frame: (0, 0) → 2560 x 1415 # 25 for menubar
+    # - Menubar height: 25 pixels
+
+    # AppleScript Desktop Bounds (Top-left origin, Y increases downward)
+    # https://www.macosxautomation.com/applescript/firsttutorial/11.html
+    # Not sure if we can get per-screen bounds via AppleScript.
+    #   - Format: {left, top, right, bottom}
+    #   - Bounds: -1440, -384, 2560, 2176
+    # Formula: as_top = max_ns_y - (ns_y + ns_height) + desktop_top + menubar
+
+    result = subprocess.run(
+        [
+            "osascript",
+            "-e",
+            'tell application "Finder" to get bounds of window of desktop',
+        ],
+        capture_output=True,
+        text=True,
+        check=True,
+    )
+    desktop_bounds = result.stdout.strip().split(", ")
+    desktop_top = int(desktop_bounds[1])
+
     ns_screen_top = y + height
-    as_screen_top = (max_ns_y - ns_screen_top) + menubar_height
+    # Adding desktop_top is a brittle hack that assumes monitors are arranged horizontally
+    as_screen_top = (max_ns_y - ns_screen_top) + desktop_top + menubar_height
 
     # Calculate window position based on config
     if position == Position.FULL:
@@ -286,7 +320,7 @@ def move_app_windows(
                         f"Moved {moved_info} windows (some may have failed)",
                     )
         else:
-            return (app_name, f"Moved windows")
+            return (app_name, "Moved windows")
 
     return (app_name, "Completed after retries")
 
