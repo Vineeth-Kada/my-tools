@@ -181,9 +181,11 @@ def move_app_windows(
     effective_height = height - menubar_height
 
     # Transform NSScreen coordinates to AppleScript window coordinates
+    # NSScreen: bottom-left origin, Y increases upward
+    # AppleScript: top-left origin, Y increases downward
+    # AppleScript top = max_ns_y - (ns_y + ns_height) + menubar_height
     ns_screen_top = y + height
-    offset = -351
-    as_screen_top = (max_ns_y - ns_screen_top) + offset
+    as_screen_top = (max_ns_y - ns_screen_top) + menubar_height
 
     # Calculate window position based on config
     if position == Position.FULL:
@@ -194,8 +196,10 @@ def move_app_windows(
         window_top = as_screen_top
         window_bottom = as_screen_top + window_height
     elif position == Position.BOTTOM:
+        # For bottom position: window takes up 'fraction' of screen at the bottom
+        # Leave (1 - fraction) empty at the top
         window_height = int(effective_height * fraction)
-        window_top = as_screen_top + effective_height - window_height
+        window_top = as_screen_top + (effective_height - window_height)
         window_bottom = as_screen_top + effective_height
     else:
         raise ValueError(f"Unknown position: {position}")
