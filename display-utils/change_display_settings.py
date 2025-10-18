@@ -16,21 +16,60 @@ Usage:
 import json
 import subprocess
 import sys
+from dataclasses import dataclass
+from typing import Optional, Tuple
 
 import Quartz
 
 
-# Map display serial numbers to logical IDs for configuration
-DISPLAY_MAP = {
-    "4237464c": 1,  # DELL U2725QE (horizontal)
-    "4236574c": 2,  # DELL U2725QE (vertical)
-}
+# =============================================================================
+# DISPLAY CONFIGURATION
+# =============================================================================
 
-# Display settings: (width, height, refresh_rate, use_hidpi)
-DISPLAY_SETTINGS = {
-    1: (2560, 1440, 120, True),  # 2560x1440 @ 120Hz in HiDPI mode (5120x2880 pixels)
-    2: (1440, 2560, 120, True),  # 1440x2560 @ 120Hz in HiDPI mode (2880x5120 pixels)
-}
+@dataclass
+class Resolution:
+    width: int
+    height: int
+    refresh_rate: int
+    hidpi: bool = True
+
+
+@dataclass
+class DisplayConfig:
+    resolution: Optional[Resolution] = None
+    position: Optional[Tuple[int, int]] = None
+    main: bool = False
+    mirror: Optional[str] = None
+
+
+@dataclass
+class Setup:
+    logical_to_serial: dict[str, list[str]]  # logical_id -> [serial_number, ...]
+    displays: dict[str, DisplayConfig]
+
+
+# Define your setup here
+SETUP = Setup(
+    logical_to_serial={
+        "horizontal": ["4237464c", "office_horizontal"],
+        "vertical": ["4236574c", "office_vertical"],
+    },
+    displays={
+        "horizontal": DisplayConfig(
+            resolution=Resolution(2560, 1440, 120),
+            main=True,
+        ),
+        "vertical": DisplayConfig(
+            resolution=Resolution(1440, 2560, 120),
+            position=(-1440, -384),
+        ),
+        "builtin": DisplayConfig(
+            mirror='main',
+        ),
+    }
+)
+
+# =============================================================================
 
 
 def find_display_by_serial(serial_number):
@@ -198,54 +237,112 @@ def set_display_mode(display_id, target_width, target_height, target_refresh, us
     return True
 
 
-def main():
-    """Configure all displays according to DISPLAY_SETTINGS."""
-    print("Display Settings Configuration")
+def get_display_id(serial_or_builtin):
+    """Get Quartz display ID for serial number or 'builtin'."""
+    if serial_or_builtin == "builtin":
+        (err, displays, _) = Quartz.CGGetActiveDisplayList(5, None, None)
+        for display_id in list(displays) + [1]: # 1 is just a coincidence on my system?
+            if Quartz.CGDisplayIsBuiltin(display_id) > 0: # -1 is probably an error code
+                return display_id
+        return None
+    return get_quartz_display_id(serial_or_builtin)
+
+
+def configure_display(quartz_id, config: DisplayConfig, name: str):
+    """Configure resolution for a single display."""
+    if config.mirror or not config.resolution:
+        return True
+
+    res = config.resolution
+    print(f"\n{name}:")
+    mode = "HiDPI" if res.hidpi else "native"
+    print(f"  Target: {res.width}x{res.height}@{res.refresh_rate}Hz ({mode})")
+
+    success = set_display_mode(quartz_id, res.width, res.height, res.refresh_rate, res.hidpi)
+    if not success:
+        print(f"  ❌ Failed to set mode")
+    return success
+
+
+def apply_arrangement(display_map, displays, main_id):
+    """Apply display positioning and mirroring in a single transaction."""
+    cfg = Quartz.CGBeginDisplayConfiguration(None)
+    if cfg[0] != 0:
+        print("\n❌ Failed to begin configuration")
+        return False
+
+    config_ref = cfg[1]
+
+    # Set main display at origin
+    if main_id:
+        Quartz.CGConfigureDisplayOrigin(config_ref, main_id, 0, 0)
+
+    # Position and mirror other displays
+    for logical_id, quartz_id in display_map.items():
+        config = displays[logical_id]
+
+        if quartz_id == main_id:
+            continue
+
+        if config.mirror == 'main' and main_id:
+            Quartz.CGConfigureDisplayMirrorOfDisplay(config_ref, quartz_id, main_id)
+        elif config.position:
+            x, y = config.position
+            Quartz.CGConfigureDisplayOrigin(config_ref, quartz_id, x, y)
+
+    result = Quartz.CGCompleteDisplayConfiguration(config_ref, Quartz.kCGConfigureForSession)
+    return result == 0
+
+
+def apply_setup(setup: Setup):
+    """Apply display setup configuration."""
+    print("Display Setup Configuration")
     print("=" * 50)
 
-    success_count = 0
-    fail_count = 0
+    displays_to_configure = {}
+    main_id = None
 
-    for serial, config_id in DISPLAY_MAP.items():
-        if config_id not in DISPLAY_SETTINGS:
-            print(f"\n⚠️  Display {config_id} (serial {serial}): No settings configured")
-            continue
+    for logical_id, config in setup.displays.items():
+        # Determine serial number(s) and find connected display
+        quartz_id = None
 
-        target_width, target_height, target_refresh, use_hidpi = DISPLAY_SETTINGS[config_id]
-        print(f"\nDisplay {config_id} (serial {serial}):")
-
-        # Look up display information
-        display_info = find_display_by_serial(serial)
-        if not display_info:
-            print("  ❌ Display not found")
-            fail_count += 1
-            continue
-
-        print(f"  Name: {display_info['name']}")
-        print(f"  Current: {display_info['width']}x{display_info['height']}")
-
-        # Get Quartz display ID
-        quartz_id = get_quartz_display_id(serial)
-        if quartz_id is None:
-            print("  ❌ Could not find Quartz display ID")
-            fail_count += 1
-            continue
-
-        # Show target configuration
-        mode_type = "HiDPI" if use_hidpi else "native"
-        print(f"  Target: {target_width}x{target_height}@{target_refresh}Hz ({mode_type})")
-
-        # Apply display mode
-        if set_display_mode(quartz_id, target_width, target_height, target_refresh, use_hidpi):
-            success_count += 1
+        if logical_id == "builtin":
+            quartz_id = get_display_id("builtin")
+        elif logical_id in setup.logical_to_serial:
+            # Try each serial number for this logical ID
+            for serial in setup.logical_to_serial[logical_id]:
+                display_id = get_display_id(serial)
+                if display_id:
+                    if quartz_id is not None:
+                        raise ValueError(f"\n❌ {logical_id}: Multiple displays connected. Only one permitted per logical ID.")
+                    quartz_id = display_id
         else:
-            fail_count += 1
+            raise ValueError(f"\n❌ {logical_id}: No serial mapping found in config")
 
-    print("\n" + "=" * 50)
-    print(f"Summary: {success_count} successful, {fail_count} failed")
+        # Skip if display not connected
+        if not quartz_id:
+            print(f"\n⚠️  {logical_id} not connected, skipping")
+            continue
 
-    if fail_count > 0:
-        sys.exit(1)
+        # Configure this display
+        configure_display(quartz_id, config, logical_id)
+        displays_to_configure[logical_id] = quartz_id
+
+        if config.main:
+            if main_id:
+                raise ValueError("Two main displays specified")
+            else:
+                main_id = quartz_id
+
+    if apply_arrangement(displays_to_configure, setup.displays, main_id):
+        print("\n✓ Setup complete")
+    else:
+        print("\n❌ Failed to apply arrangement")
+
+
+def main():
+    """Configure displays according to SETUP."""
+    apply_setup(SETUP)
 
 
 if __name__ == "__main__":
