@@ -15,10 +15,20 @@ Usage:
 
 import json
 import subprocess
+import time
 from dataclasses import dataclass
 from typing import Optional
 
+import objc
 import Quartz
+
+# Load MonitorPanel private framework for rotation support
+MonitorPanel = objc.loadBundle(
+    'MonitorPanel',
+    bundle_path='/System/Library/PrivateFrameworks/MonitorPanel.framework',
+    module_globals=globals()
+)
+MPDisplay = objc.lookUpClass('MPDisplay')
 
 # =============================================================================
 # DISPLAY CONFIGURATION
@@ -31,6 +41,7 @@ class Resolution:
     height: int
     refresh_rate: int
     hidpi: bool = True
+    rotation: int = 0  # 0, 90, 180, or 270 degrees
 
 
 @dataclass
@@ -59,7 +70,7 @@ SETUP = Setup(
             main=True,
         ),
         "vertical": DisplayConfig(
-            resolution=Resolution(1440, 2560, 120),
+            resolution=Resolution(1440, 2560, 120, rotation=90),
             position=(-1440, -384),
         ),
         "builtin": DisplayConfig(
@@ -132,31 +143,32 @@ def find_display_by_serial(serial_number):
 def get_quartz_display_id(serial_number):
     """Get Quartz display ID for a display with the given serial number.
 
-    Maps serial number to Quartz's internal display ID by matching current resolution.
+    Maps serial number to Quartz's internal display ID by matching serial numbers.
+    This ensures correct identification even when multiple displays have the same resolution.
 
     Args:
-        serial_number: Display serial number
+        serial_number: Display serial number (hex string or decimal)
 
     Returns:
         Quartz display ID (integer) or None if not found
     """
-    display_info = find_display_by_serial(serial_number)
-    if not display_info:
-        return None
+    # Convert hex serial to decimal for comparison with Quartz serial
+    try:
+        target_serial_dec = int(serial_number, 16)
+    except ValueError:
+        # If not hex, try as decimal
+        try:
+            target_serial_dec = int(serial_number)
+        except ValueError:
+            return None
 
     # Get all active displays from Quartz
     (err, displays, num_displays) = Quartz.CGGetActiveDisplayList(10, None, None)
 
-    # Find display with matching current resolution
+    # Find display with matching serial number
     for display_id in displays:
-        current_mode = Quartz.CGDisplayCopyDisplayMode(display_id)
-        if not current_mode:
-            continue
-
-        width = Quartz.CGDisplayModeGetWidth(current_mode)
-        height = Quartz.CGDisplayModeGetHeight(current_mode)
-
-        if width == display_info["width"] and height == display_info["height"]:
+        quartz_serial = Quartz.CGDisplaySerialNumber(display_id)
+        if quartz_serial == target_serial_dec:
             return display_id
 
     return None
@@ -166,6 +178,9 @@ def set_display_mode(
     display_id, target_width, target_height, target_refresh, use_hidpi=False
 ):
     """Set display to specified resolution and refresh rate.
+
+    Automatically tries swapping width/height if the requested mode doesn't exist.
+    This handles rotated displays where config specifies logical orientation.
 
     Args:
         display_id: Quartz display ID
@@ -182,29 +197,29 @@ def set_display_mode(
     options = {Quartz.kCGDisplayShowDuplicateLowResolutionModes: True}
     modes = Quartz.CGDisplayCopyAllDisplayModes(display_id, options)
 
-    # Find mode matching target resolution, refresh rate, and HiDPI requirement
-    best_match = None
-    for mode in modes:
-        width = Quartz.CGDisplayModeGetWidth(mode)
-        height = Quartz.CGDisplayModeGetHeight(mode)
-        refresh = Quartz.CGDisplayModeGetRefreshRate(mode)
-        pixel_width = Quartz.CGDisplayModeGetPixelWidth(mode)
-        pixel_height = Quartz.CGDisplayModeGetPixelHeight(mode)
+    # Helper function to find a mode
+    def find_mode(width, height):
+        for mode in modes:
+            mode_width = Quartz.CGDisplayModeGetWidth(mode)
+            mode_height = Quartz.CGDisplayModeGetHeight(mode)
+            refresh = Quartz.CGDisplayModeGetRefreshRate(mode)
+            pixel_width = Quartz.CGDisplayModeGetPixelWidth(mode)
+            pixel_height = Quartz.CGDisplayModeGetPixelHeight(mode)
 
-        # Check resolution and refresh rate
-        if (
-            width != target_width
-            or height != target_height
-            or refresh != target_refresh
-        ):
-            continue
+            if mode_width != width or mode_height != height or refresh != target_refresh:
+                continue
 
-        # HiDPI mode has 2x pixel density
-        is_hidpi = pixel_width == width * 2 and pixel_height == height * 2
+            is_hidpi = pixel_width == mode_width * 2 and pixel_height == mode_height * 2
+            if use_hidpi == is_hidpi:
+                return mode
+        return None
 
-        if use_hidpi == is_hidpi:
-            best_match = mode
-            break
+    # Try requested dimensions first
+    best_match = find_mode(target_width, target_height)
+
+    # Try swapping width/height for rotated displays
+    if not best_match and target_width != target_height:
+        best_match = find_mode(target_height, target_width)
 
     if not best_match:
         mode_type = "HiDPI" if use_hidpi else "native"
@@ -248,6 +263,47 @@ def set_display_mode(
     return True
 
 
+def set_display_rotation(display_id, degree):
+    """Set display rotation using MonitorPanel framework.
+
+    Args:
+        display_id: Quartz display ID
+        degree: Rotation angle (0, 90, 180, or 270)
+
+    Returns:
+        True if successful, False otherwise
+    """
+    if degree not in [0, 90, 180, 270]:
+        print(f"  ❌ Invalid rotation: {degree}")
+        return False
+
+    current_rotation = Quartz.CGDisplayRotation(display_id)
+    if current_rotation == degree:
+        return True  # Already at target rotation
+
+    try:
+        # Use autorelease pool for proper memory management
+        mp_display = MPDisplay.alloc().initWithCGSDisplayID_(display_id)
+        mp_display.setOrientation_(degree)
+
+        # Don't manually release - PyObjC handles this automatically
+        # Wait for rotation to complete
+        wait_seconds = 10
+        begin_time = time.time()
+
+        while Quartz.CGDisplayRotation(display_id) != degree:
+            if time.time() - begin_time >= wait_seconds:
+                print(f"  ❌ Timeout waiting for rotation")
+                return False
+            time.sleep(0.1)
+
+        return True
+
+    except Exception as e:
+        print(f"  ❌ Rotation error: {e}")
+        return False
+
+
 def get_display_id(serial_or_builtin):
     """Get Quartz display ID for serial number or 'builtin'."""
     if serial_or_builtin == "builtin":
@@ -262,15 +318,23 @@ def get_display_id(serial_or_builtin):
 
 
 def configure_display(quartz_id, config: DisplayConfig, name: str):
-    """Configure resolution for a single display."""
+    """Configure resolution and rotation for a single display."""
     if config.mirror or not config.resolution:
         return True
 
     res = config.resolution
     print(f"\n{name}:")
     mode = "HiDPI" if res.hidpi else "native"
-    print(f"  Target: {res.width}x{res.height}@{res.refresh_rate}Hz ({mode})")
+    rotation_info = f", {res.rotation}°" if res.rotation != 0 else ""
+    print(f"  Target: {res.width}x{res.height}@{res.refresh_rate}Hz ({mode}{rotation_info})")
 
+    # Set rotation first (displayplacer sets rotation before resolution)
+    if res.rotation != 0:
+        if not set_display_rotation(quartz_id, res.rotation):
+            print("  ❌ Failed to set rotation")
+            return False
+
+    # Then set resolution
     success = set_display_mode(
         quartz_id, res.width, res.height, res.refresh_rate, res.hidpi
     )
