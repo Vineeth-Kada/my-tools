@@ -1,0 +1,1852 @@
+{
+ "device": "Kinesis Advantage360 Pro",
+ "source": "Read from the keyboard via Kinesis Clique (ZMK Studio)",
+ "exported": "2026-10-12",
+ "note": "Bindings are in ZMK keymap position order (76 keys). 'zmk' is the decoded binding; behavior/param1/param2 are the raw ZMK Studio values.",
+ "layers": [
+  {
+   "name": "Base",
+   "bindings": [
+    {
+     "behavior": "Key Press",
+     "param1": 458793,
+     "param2": 0,
+     "zmk": "&kp ESC"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458782,
+     "param2": 0,
+     "zmk": "&kp N1"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458783,
+     "param2": 0,
+     "zmk": "&kp N2"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458784,
+     "param2": 0,
+     "zmk": "&kp N3"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458785,
+     "param2": 0,
+     "zmk": "&kp N4"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458786,
+     "param2": 0,
+     "zmk": "&kp N5"
+    },
+    {
+     "behavior": "Toggle Layer",
+     "param1": 1,
+     "param2": 0,
+     "zmk": "&tog 1"
+    },
+    {
+     "behavior": "Momentary Layer",
+     "param1": 3,
+     "param2": 0,
+     "zmk": "&mo 3"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458787,
+     "param2": 0,
+     "zmk": "&kp N6"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458788,
+     "param2": 0,
+     "zmk": "&kp N7"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458789,
+     "param2": 0,
+     "zmk": "&kp N8"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458790,
+     "param2": 0,
+     "zmk": "&kp N9"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458791,
+     "param2": 0,
+     "zmk": "&kp N0"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458797,
+     "param2": 0,
+     "zmk": "&kp MINUS"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458795,
+     "param2": 0,
+     "zmk": "&kp TAB"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458772,
+     "param2": 0,
+     "zmk": "&kp Q"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458778,
+     "param2": 0,
+     "zmk": "&kp W"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458760,
+     "param2": 0,
+     "zmk": "&kp E"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458773,
+     "param2": 0,
+     "zmk": "&kp R"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458775,
+     "param2": 0,
+     "zmk": "&kp T"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458841,
+     "param2": 0,
+     "zmk": "&kp KP_N1"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458843,
+     "param2": 0,
+     "zmk": "&kp KP_N3"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458780,
+     "param2": 0,
+     "zmk": "&kp Y"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458776,
+     "param2": 0,
+     "zmk": "&kp U"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458764,
+     "param2": 0,
+     "zmk": "&kp I"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458770,
+     "param2": 0,
+     "zmk": "&kp O"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458771,
+     "param2": 0,
+     "zmk": "&kp P"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458801,
+     "param2": 0,
+     "zmk": "&kp BSLH"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458793,
+     "param2": 0,
+     "zmk": "&kp ESC"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458756,
+     "param2": 0,
+     "zmk": "&kp A"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458774,
+     "param2": 0,
+     "zmk": "&kp S"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458759,
+     "param2": 0,
+     "zmk": "&kp D"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458761,
+     "param2": 0,
+     "zmk": "&kp F"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458762,
+     "param2": 0,
+     "zmk": "&kp G"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458842,
+     "param2": 0,
+     "zmk": "&kp KP_N2"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458979,
+     "param2": 0,
+     "zmk": "&kp LGUI"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458978,
+     "param2": 0,
+     "zmk": "&kp LALT"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458978,
+     "param2": 0,
+     "zmk": "&kp LALT"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458983,
+     "param2": 0,
+     "zmk": "&kp RGUI"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458844,
+     "param2": 0,
+     "zmk": "&kp KP_N4"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458763,
+     "param2": 0,
+     "zmk": "&kp H"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458765,
+     "param2": 0,
+     "zmk": "&kp J"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458766,
+     "param2": 0,
+     "zmk": "&kp K"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458767,
+     "param2": 0,
+     "zmk": "&kp L"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458803,
+     "param2": 0,
+     "zmk": "&kp SEMI"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458804,
+     "param2": 0,
+     "zmk": "&kp SQT"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458796,
+     "param2": 0,
+     "zmk": "&kp SPACE"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458781,
+     "param2": 0,
+     "zmk": "&kp Z"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458779,
+     "param2": 0,
+     "zmk": "&kp X"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458758,
+     "param2": 0,
+     "zmk": "&kp C"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458777,
+     "param2": 0,
+     "zmk": "&kp V"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458757,
+     "param2": 0,
+     "zmk": "&kp B"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 134676523,
+     "param2": 0,
+     "zmk": "&kp LG(TAB)"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458976,
+     "param2": 0,
+     "zmk": "&kp LCTRL"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458769,
+     "param2": 0,
+     "zmk": "&kp N"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458768,
+     "param2": 0,
+     "zmk": "&kp M"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458806,
+     "param2": 0,
+     "zmk": "&kp COMMA"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458807,
+     "param2": 0,
+     "zmk": "&kp DOT"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458808,
+     "param2": 0,
+     "zmk": "&kp FSLH"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458782,
+     "param2": 0,
+     "zmk": "&kp N1"
+    },
+    {
+     "behavior": "Momentary Layer",
+     "param1": 2,
+     "param2": 0,
+     "zmk": "&mo 2"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458805,
+     "param2": 0,
+     "zmk": "&kp GRAVE"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458798,
+     "param2": 0,
+     "zmk": "&kp EQUAL"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458832,
+     "param2": 0,
+     "zmk": "&kp LEFT"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458831,
+     "param2": 0,
+     "zmk": "&kp RIGHT"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458794,
+     "param2": 0,
+     "zmk": "&kp BSPC"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458977,
+     "param2": 0,
+     "zmk": "&kp LSHFT"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 134676533,
+     "param2": 0,
+     "zmk": "&kp LG(GRAVE)"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 67567843,
+     "param2": 0,
+     "zmk": "&kp LA(LGUI)"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458792,
+     "param2": 0,
+     "zmk": "&kp RET"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458796,
+     "param2": 0,
+     "zmk": "&kp SPACE"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458834,
+     "param2": 0,
+     "zmk": "&kp UP"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458833,
+     "param2": 0,
+     "zmk": "&kp DOWN"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458799,
+     "param2": 0,
+     "zmk": "&kp LBKT"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458800,
+     "param2": 0,
+     "zmk": "&kp RBKT"
+    },
+    {
+     "behavior": "Momentary Layer",
+     "param1": 2,
+     "param2": 0,
+     "zmk": "&mo 2"
+    }
+   ]
+  },
+  {
+   "name": "Kp",
+   "bindings": [
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 34013222,
+     "param2": 0,
+     "zmk": "&kp LS(N9)"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 34013223,
+     "param2": 0,
+     "zmk": "&kp LS(N0)"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458834,
+     "param2": 0,
+     "zmk": "&kp UP"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458799,
+     "param2": 0,
+     "zmk": "&kp LBKT"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458800,
+     "param2": 0,
+     "zmk": "&kp RBKT"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 34013231,
+     "param2": 0,
+     "zmk": "&kp LS(LBKT)"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 34013232,
+     "param2": 0,
+     "zmk": "&kp LS(RBKT)"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458832,
+     "param2": 0,
+     "zmk": "&kp LEFT"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458833,
+     "param2": 0,
+     "zmk": "&kp DOWN"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458831,
+     "param2": 0,
+     "zmk": "&kp RIGHT"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    }
+   ]
+  },
+  {
+   "name": "Fn",
+   "bindings": [
+    {
+     "behavior": "Key Press",
+     "param1": 458810,
+     "param2": 0,
+     "zmk": "&kp F1"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458811,
+     "param2": 0,
+     "zmk": "&kp F2"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458812,
+     "param2": 0,
+     "zmk": "&kp F3"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458813,
+     "param2": 0,
+     "zmk": "&kp F4"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458814,
+     "param2": 0,
+     "zmk": "&kp F5"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458815,
+     "param2": 0,
+     "zmk": "&kp F6"
+    },
+    {
+     "behavior": "Toggle Layer",
+     "param1": 1,
+     "param2": 0,
+     "zmk": "&tog 1"
+    },
+    {
+     "behavior": "Momentary Layer",
+     "param1": 3,
+     "param2": 0,
+     "zmk": "&mo 3"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458816,
+     "param2": 0,
+     "zmk": "&kp F7"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458817,
+     "param2": 0,
+     "zmk": "&kp F8"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458818,
+     "param2": 0,
+     "zmk": "&kp F9"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458819,
+     "param2": 0,
+     "zmk": "&kp F10"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458820,
+     "param2": 0,
+     "zmk": "&kp F11"
+    },
+    {
+     "behavior": "Key Press",
+     "param1": 458821,
+     "param2": 0,
+     "zmk": "&kp F12"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    }
+   ]
+  },
+  {
+   "name": "Mod",
+   "bindings": [
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "Bluetooth",
+     "param1": 3,
+     "param2": 0,
+     "zmk": "&bt BT_SEL 0"
+    },
+    {
+     "behavior": "Bluetooth",
+     "param1": 3,
+     "param2": 1,
+     "zmk": "&bt BT_SEL 1"
+    },
+    {
+     "behavior": "Bluetooth",
+     "param1": 3,
+     "param2": 2,
+     "zmk": "&bt BT_SEL 2"
+    },
+    {
+     "behavior": "Bluetooth",
+     "param1": 3,
+     "param2": 3,
+     "zmk": "&bt BT_SEL 3"
+    },
+    {
+     "behavior": "Bluetooth",
+     "param1": 3,
+     "param2": 4,
+     "zmk": "&bt BT_SEL 4"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "Transparent",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&trans"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "Bootloader",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&bootloader"
+    },
+    {
+     "behavior": "Bootloader",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&bootloader"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "Studio Unlock",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&studio_unlock"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "Bluetooth",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&bt BT_CLR"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "Battery Level",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "<Battery Level>"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "macro_ver",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "<macro_ver>"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "Backlight",
+     "param1": 2,
+     "param2": 0,
+     "zmk": "&bl BL_TOG"
+    },
+    {
+     "behavior": "Underglow",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&rgb_ug RGB_TOG"
+    },
+    {
+     "behavior": "Backlight",
+     "param1": 3,
+     "param2": 0,
+     "zmk": "&bl BL_INC"
+    },
+    {
+     "behavior": "Backlight",
+     "param1": 4,
+     "param2": 0,
+     "zmk": "&bl BL_DEC"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    },
+    {
+     "behavior": "None",
+     "param1": 0,
+     "param2": 0,
+     "zmk": "&none"
+    }
+   ]
+  }
+ ]
+}

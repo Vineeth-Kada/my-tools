@@ -13,6 +13,10 @@ macOS utilities for workspace and display management:
 
 See [display-utils/README.md](display-utils/README.md) for detailed documentation.
 
+### kinesis-adv360
+
+Keymap for the Kinesis Advantage360 Pro, shared between my home and office keyboards. See [kinesis-adv360/README.md](kinesis-adv360/README.md).
+
 ## Future Additions
 
 This repository serves as a general-purpose collection for various utilities and scripts.
